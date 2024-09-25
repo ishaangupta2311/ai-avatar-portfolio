@@ -1,47 +1,57 @@
 "use client";
 
 import {
-  Box,
   CameraControls,
   Environment,
   Gltf,
-  OrbitControls,
+  Html,
   PerspectiveCamera,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { useState } from "react";
 
-import { Person } from "./Person";
+
 import { degToRad } from "three/src/math/MathUtils";
 import { TypingBox } from "./TypingBox";
+import { OutputBox } from "./OutputBox";
 
-function CameraHelper(){
-  const  camera = new PerspectiveCamera(60,1,1,3);
-}
-
+// function CameraHelper() {
+//   const camera = new PerspectiveCamera(60, 1, 1, 3);
+// }
 
 export const Experience = () => {
+  const [response, setResponse] = useState("");
+
+  const handleResponseChange = (newResponse) => {
+    setResponse(newResponse);
+  };
   return (
     <>
       <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
-        <TypingBox />
+        <TypingBox onResponseChange={handleResponseChange} />
       </div>
-      <Canvas camera={{ position: [-15.0, -0.50, 15, 0.001], fov:10}}>
+      <Canvas
+        camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
+      >
+        <Html position={[0.22, 0.15, -1]} transform castShadow  distanceFactor={0.8} rotation-y={degToRad(-30)}>
+          <OutputBox response={response} />
+        </Html>
         <CameraManager />
         <Environment preset="sunset" />
-        <ambientLight intensity={1} color="pink" />
-        <Gltf src="/models/sci-fi_lab.glb" position={[0.2, -1.7, -2]} rotation-y={degToRad(-40)} />
+        <ambientLight intensity={0.5} color="pink" />
+
+        <Gltf
+          src="/models/sci-fi_lab.glb"
+          position={[0.2, -1.7, -2]}
+          rotation-y={degToRad(-40)}
+        />
         <Gltf
           src="/models/tony_starkadi.glb"
           position={[4.5, -0.1, -3]}
           scale={1.2}
           rotation-y={degToRad(-40)}
         />
-        {/* <Person
-      person={"TonyStark"}
-      position={[-1, -1.6, -3]}
-      scale={1.3}
-      rotation-y={degToRad(-20)}
-    /> */}
+        
       </Canvas>
     </>
   );
