@@ -11,9 +11,32 @@
     "esModuleInterop": true, // For compatibility with CommonJS
     "skipLibCheck": true, // Skip type checking for libraries
     "paths": {
-      "@/*": ["./src/*"] // Keep your existing path alias
-    }
+      "@/*": [
+        "./src/*"
+      ] // Keep your existing path alias
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
