@@ -23,7 +23,7 @@ export function Sidebar() {
           <AvatarFallback className=" bg-gray-200">?</AvatarFallback>
         </Avatar>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent side={'left'}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
