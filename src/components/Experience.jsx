@@ -14,6 +14,7 @@ import { useState } from "react";
 import { degToRad } from "three/src/math/MathUtils";
 import { TypingBox } from "./TypingBox";
 import { OutputBox } from "./OutputBox";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // function CameraHelper() {
 //   const camera = new PerspectiveCamera(60, 1, 1, 3);
@@ -27,13 +28,29 @@ export const Experience = () => {
   };
   return (
     <>
+      <div className="z-10 fixed top-2 left-2 cursor-pointer">
+        <Avatar className="rounded-full border-2 border-gray-300 hover:border-gray-500 transition-all">
+          <AvatarImage
+            src="https://github.com/shadcn.png"
+          />
+          <AvatarFallback className=" bg-gray-200">
+            ?
+          </AvatarFallback>
+        </Avatar>
+      </div>
+
       <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
         <TypingBox onResponseChange={handleResponseChange} />
       </div>
       <Canvas
         camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
       >
-        <Html position={[0.22, 0.15, -1]} transform castShadow  distanceFactor={0.8} rotation-y={degToRad(-30)}>
+        <Html
+          position={[0.22, 0.15, -1]}
+          transform
+          distanceFactor={0.8}
+          rotation-y={degToRad(-30)}
+        >
           <OutputBox response={response} />
         </Html>
         <CameraManager />
@@ -51,7 +68,6 @@ export const Experience = () => {
           scale={1.2}
           rotation-y={degToRad(-40)}
         />
-        
       </Canvas>
     </>
   );
