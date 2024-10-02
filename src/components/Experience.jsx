@@ -15,6 +15,7 @@ import { degToRad } from "three/src/math/MathUtils";
 import { TypingBox } from "./TypingBox";
 import { OutputBox } from "./OutputBox";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Sidebar } from "./Sidebar";
 
 // function CameraHelper() {
 //   const camera = new PerspectiveCamera(60, 1, 1, 3);
@@ -29,14 +30,7 @@ export const Experience = () => {
   return (
     <>
       <div className="z-10 fixed top-2 left-2 cursor-pointer">
-        <Avatar className="rounded-full border-2 border-gray-300 hover:border-gray-500 transition-all">
-          <AvatarImage
-            src="https://github.com/shadcn.png"
-          />
-          <AvatarFallback className=" bg-gray-200">
-            ?
-          </AvatarFallback>
-        </Avatar>
+        <Sidebar/>
       </div>
 
       <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
