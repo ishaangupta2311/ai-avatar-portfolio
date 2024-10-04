@@ -29,7 +29,7 @@ export const Experience = () => {
   };
   return (
     <>
-      <div className="z-10 fixed top-2 left-2 cursor-pointer">
+      <div className="z-10 fixed top-3 left-3 cursor-pointer">
         <Sidebar/>
       </div>
 
