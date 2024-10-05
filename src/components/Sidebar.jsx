@@ -24,7 +24,6 @@ import {
   Paperclip,
   Rabbit,
   Settings,
-  Settings2,
   Share,
   SquareTerminal,
   SquareUser,
@@ -44,27 +43,31 @@ export function Sidebar() {
         </Avatar>
       </SheetTrigger>
 
-      <SheetContent className="w-[300px] sm:w-[300px]" side={"left"}>
+      <SheetContent side={"left"}>
         <ModeToggle />
-        <nav className="grid gap-1 p-2">
-          <SidebarItem
-            icon={<SquareTerminal className="size-5" />}
-            text="Playground"
-          />
-          <SidebarItem
-            icon={<Book className="size-5" />}
-            text="Documentation"
-          />
-          <SidebarItem
-            icon={<Settings2 className="size-5" />}
-            text="Settings"
-          />
-          <SidebarItem icon={<LifeBuoy className="size-5" />} text="Help" />
-          <SidebarItem
-            icon={<SquareUser className="size-5" />}
-            text="Account"
-          />
-        </nav>
+        <div className="flex flex-col place-content-between h-full py-4">
+          <div className="flex flex-col items-center gap-1 py-4">
+            <SidebarItem
+              icon={<SquareTerminal className="size-5" />}
+              text="Customize Avatar"
+            />
+            <SidebarItem
+              icon={<Book className="size-5" />}
+              text="Documentation"
+            />
+            <SidebarItem
+              icon={<SquareUser className="size-5" />}
+              text="Account"
+            />
+          </div>
+          <div className="mt-auto flex flex-col items-center py-4">
+            <SidebarItem icon={<LifeBuoy className="size-5" />} text="Help" />
+            <SidebarItem
+              icon={<Settings className="size-5" />}
+              text="Settings"
+            />
+          </div>
+        </div>
       </SheetContent>
     </Sheet>
   );
