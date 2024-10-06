@@ -82,6 +82,7 @@ export const TypingBox = ({ onResponseChange }) => {
           <input
             className="focus:outline focus:outline-white/80 flex-grow bg-slate-800/60 p-2 px-4 rounded-full text-white placeholder:text-white/50 shadow-inner shadow-slate-900/60"
             placeholder="Ask me anything"
+            id="chatInput"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={(e) => {
