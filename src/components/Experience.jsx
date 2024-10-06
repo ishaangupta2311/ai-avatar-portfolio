@@ -29,16 +29,18 @@ export const Experience = () => {
   };
   return (
     <>
-      <div className="z-10 fixed top-3 left-3 cursor-pointer">
-        <Sidebar/>
-      </div>
+      <aside className="z-10 fixed top-3 left-3 cursor-pointer">
+        <Sidebar />
+      </aside>
 
       <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
         <TypingBox onResponseChange={handleResponseChange} />
       </div>
       <Canvas
-        camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
+      // camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
       >
+        <PerspectiveCamera makeDefault fov={30} position={[-15.0, -0.5, 15]} />
+        <CameraManager />
         <Html
           position={[0.22, 0.15, -1]}
           transform
@@ -47,10 +49,8 @@ export const Experience = () => {
         >
           <OutputBox response={response} />
         </Html>
-        <CameraManager />
         <Environment preset="sunset" />
         <ambientLight intensity={0.5} color="pink" />
-
         <Gltf
           src="/models/sci-fi_lab.glb"
           position={[0.2, -1.7, -2]}
