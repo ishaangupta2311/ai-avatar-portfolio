@@ -44,7 +44,7 @@ export const Experience = () => {
         <Html
           position={[0.22, 0.15, -1]}
           transform
-          distanceFactor={0.8}
+          distanceFactor={1}
           rotation-y={degToRad(-30)}
         >
           <OutputBox response={response} />
@@ -57,9 +57,9 @@ export const Experience = () => {
           rotation-y={degToRad(-40)}
         />
         <Gltf
-          src="/models/tony_starkadi.glb"
-          position={[4.5, -0.1, -3]}
-          scale={1.2}
+          src="/models/Man.glb"
+          position={[3, -1.6, -3]}
+          scale={0.6}
           rotation-y={degToRad(-40)}
         />
       </Canvas>
