@@ -30,6 +30,13 @@ import {
   Turtle,
 } from "lucide-react";
 
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "./ModeToggle";
 
@@ -59,6 +66,12 @@ export function Sidebar() {
               icon={<SquareUser className="size-5" />}
               text="Account"
             />
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
           <div className="mt-auto flex flex-col items-center py-4">
             <SidebarItem icon={<LifeBuoy className="size-5" />} text="Help" />
