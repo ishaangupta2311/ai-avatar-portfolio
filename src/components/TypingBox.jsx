@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const TypingBox = ({ onResponseChange }) => {
   const handleGenerate = async () => {
+    setLoading(true);
     try {
       const response = await fetch("/api/ai/generate", {
         method: "POST",
@@ -20,6 +21,7 @@ export const TypingBox = ({ onResponseChange }) => {
     } catch (error) {
       console.error("Error:", error);
     }
+    setLoading(false);
   };
   const [prompt, setPrompt] = useState("");
   const [modelResponse, setModelResponse] = useState();
