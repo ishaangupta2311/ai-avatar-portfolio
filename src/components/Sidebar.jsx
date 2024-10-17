@@ -66,12 +66,6 @@ export function Sidebar() {
               icon={<SquareUser className="size-5" />}
               text="Account"
             />
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
           </div>
           <div className="mt-auto flex flex-col items-center py-4">
             <SidebarItem icon={<LifeBuoy className="size-5" />} text="Help" />
@@ -79,6 +73,19 @@ export function Sidebar() {
               icon={<Settings className="size-5" />}
               text="Settings"
             />
+            <Button
+              variant="secondary"
+              className="w-full justify-start rounded-lg"
+            >
+              <span className="mx-auto">
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </span>
+            </Button>
           </div>
         </div>
       </SheetContent>
