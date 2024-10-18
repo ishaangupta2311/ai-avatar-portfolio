@@ -58,9 +58,9 @@ export const Experience = () => {
         />
         <Gltf
           src="/models/Man.glb"
-          position={[3, -1.6, -3]}
+          position={[4, -1.6, -1.5]}
           scale={0.6}
-          rotation-y={degToRad(-40)}
+          rotation-y={degToRad(-60)}
         />
       </Canvas>
     </>
