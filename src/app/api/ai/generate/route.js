@@ -7,7 +7,7 @@ export async function POST(req, res) {
   const fileManager = new GoogleAIFileManager(process.env.GEMINI_API_KEY);
   console.log("pptest");
   const uploadResponse = await fileManager.uploadFile(
-    "public/Ishaan Gupta Resume.pdf",
+    "public/Ishaan_Gupta_Resume.pdf",
     {
       mimeType: "application/pdf",
       displayName: "Ishaan's Resume",
