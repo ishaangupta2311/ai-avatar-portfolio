@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-
+pb_data
+pocketbase*
 # environment variables
 .env
 # dependencies
