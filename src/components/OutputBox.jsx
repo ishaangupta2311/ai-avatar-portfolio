@@ -1,44 +1,86 @@
 import { useAIAvatar } from "@/hooks/useAIAvatar";
-import { useEffect, useRef } from "react";
 
 export const OutputBox = ({ response }) => {
   const messages = useAIAvatar((state) => state.messages);
-  const playMessage = useAIAvatar((state) => state.playMessage);
   const { currentMessage } = useAIAvatar();
-  const environment = useAIAvatar((state) => state.environment);
 
-  const container = useRef();
+  const handleScroll = (e) => {
+    e.stopPropagation();
+  };
 
-  useEffect(() => {
-    if (container.current) {
-      container.current.scrollTo({
-        top: container.current.scrollHeight,
-        behavior: "smooth", // Note: fixed typo in 'behavior'
-      });
-    }
-  }, [messages.length]);
+  const handleWheel = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <div
-      ref={container} // Add the ref here
-      className="z-10 max-w-[600px] flex flex-col space-y-6 bg-slate-800/80 p-6 backdrop-blur-md rounded-xl border border-slate-700 shadow-lg overflow-y-auto max-h-[400px]" // Added overflow and max-height properties
+      className="z-10 max-w-[600px] w-full bg-slate-800/80 p-6 backdrop-blur-md rounded-xl border border-slate-700 shadow-lg"
+      style={{
+        pointerEvents: "auto",
+        touchAction: "auto",
+      }}
+      onScroll={handleScroll}
+      onWheel={handleWheel}
     >
-      {messages.length > 0 ? (
-        messages.map((message) => (
-          <div key={message.id} className="space-y-4">
-            <div className="text-slate-400">
-              <p>{message.question}</p>
+      <div
+        className="flex flex-col space-y-6 max-h-[400px] overflow-y-auto custom-scrollbar"
+        style={{
+          WebkitOverflowScrolling: "touch",
+          msOverflowStyle: "auto",
+          scrollbarWidth: "thin",
+          scrollbarColor: "#94a3b8 rgba(51, 65, 85, 0.3)",
+          cursor: "auto",
+        }}
+        onScroll={handleScroll}
+        onWheel={handleWheel}
+      >
+        <style>
+          {`
+            .custom-scrollbar::-webkit-scrollbar {
+              width: 8px;
+              background-color: transparent;
+            }
+            
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+              background-color: #94a3b8;
+              border-radius: 4px;
+            }
+            
+            .custom-scrollbar::-webkit-scrollbar-track {
+              background-color: rgba(51, 65, 85, 0.3);
+              border-radius: 4px;
+            }
+
+            .custom-scrollbar {
+              pointer-events: auto !important;
+              user-select: text !important;
+            }
+          `}
+        </style>
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <div
+              key={message.id}
+              className={`space-y-4 transition-opacity duration-300 ${
+                currentMessage?.id === message.id ? "opacity-100" : "opacity-80"
+              }`}
+            >
+              <div className="text-slate-400 bg-slate-700/50 p-3 rounded-lg">
+                <p>{message.question}</p>
+              </div>
+              <div className="text-slate-100 font-medium leading-relaxed bg-slate-700/30 p-3 rounded-lg">
+                <p>{message.answer}</p>
+              </div>
             </div>
-            <div className="text-slate-100 font-medium leading-relaxed">
-              <p>{message.answer}</p>
-            </div>
+          ))
+        ) : (
+          <div className="text-slate-400 italic text-center">
+            Text Output goes here...
           </div>
-        ))
-      ) : (
-        <div className="text-slate-400 italic">
-          Text output will appear here...
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
+
+export default OutputBox;
