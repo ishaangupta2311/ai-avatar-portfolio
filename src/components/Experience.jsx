@@ -46,6 +46,13 @@ export const Experience = () => {
           transform
           distanceFactor={1}
           rotation-y={degToRad(-30)}
+          occlude={true}
+          style={{
+            pointerEvents: "auto",
+            touchAction: "auto",
+          }}
+          prepend
+          portal
         >
           <OutputBox response={response} />
         </Html>
