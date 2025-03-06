@@ -1,6 +1,9 @@
-This is a [Next.js](https://nextjs.org) that enables you to create a 3D AI Avatar of yourself and deploy it on the web. 
+# Introduction
+
+This is a [Next.js](https://nextjs.org) that enables you to create a 3D AI Avatar of yourself and deploy it on the web.
 
 ## Tech Stack Overview
+
 - [x] NextJS
 - [x] TypeScript
 - [x] Prisma ORM
@@ -11,10 +14,10 @@ This is a [Next.js](https://nextjs.org) that enables you to create a 3D AI Avata
 - [x] Shadcn UI
 - [x] AWS S3 bucket
 
-
 ## Future Additions
+
 - [ ] Add Payment processing
 
 ## Deploy on Vercel or Netlify
-Clone this repository and deploy the project on either Vercel or Netlify for free.
 
+Clone this repository and deploy the project on either Vercel or Netlify for free.
