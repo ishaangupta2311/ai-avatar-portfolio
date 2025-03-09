@@ -55,13 +55,26 @@ export function SettingsPageComponent() {
   const [isLoading, setLoading] = useState(false);
 
   const computeSHA256 = async (file) => {
-    const buffer = await file.arrayBuffer();
-    const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-    return hashHex;
+    try {
+      // Check if crypto.subtle is available
+      if (!window.crypto || !window.crypto.subtle) {
+        console.error("Web Crypto API is not available in this environment");
+        throw new Error("Web Crypto API is not available");
+      }
+
+      const buffer = await file.arrayBuffer();
+      const hashBuffer = await window.crypto.subtle.digest("SHA-256", buffer);
+
+      // Convert to Base64 for AWS S3
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const base64Hash = btoa(String.fromCharCode.apply(null, hashArray));
+
+      console.log("Generated Base64 SHA-256 hash:", base64Hash);
+      return base64Hash;
+    } catch (error) {
+      console.error("Error computing SHA-256 hash:", error);
+      throw error;
+    }
   };
 
   const handleSave = async (e) => {
@@ -108,7 +121,6 @@ export function SettingsPageComponent() {
       setLoading(false);
       return;
     }
-
   };
 
   const handleResumeChange = (e) => {
