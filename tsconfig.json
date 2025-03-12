@@ -2,14 +2,14 @@
   "compilerOptions": {
     "jsx": "preserve", // or "react-jsx" for React 17+
     "allowJs": true, // Allow JavaScript files
-    "checkJs": false, // Skip type checking for JavaScript files
+    // "checkJs": false, // Skip type checking for JavaScript files
     "noEmit": true, // Don't emit any files, rely on Next.js or Babel for output
     "target": "es6", // Adjust based on your environment
     "module": "esnext", // Use ES modules
     "moduleResolution": "node", // Resolve modules like Node.js
     "strict": true, // Strict type checking
     "esModuleInterop": true, // For compatibility with CommonJS
-    "skipLibCheck": true, // Skip type checking for libraries
+    // "skipLibCheck": true, // Skip type checking for libraries
     "paths": {
       "@/*": [
         "./src/*"
