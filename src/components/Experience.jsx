@@ -10,7 +10,6 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 
-
 import { degToRad } from "three/src/math/MathUtils";
 import { TypingBox } from "./TypingBox";
 import { OutputBox } from "./OutputBox";
@@ -29,7 +28,7 @@ export const Experience = () => {
   };
   return (
     <>
-      <aside className="z-10 fixed top-3 left-3 cursor-pointer">
+      <aside className="z-[20] fixed top-3 left-3 cursor-pointer">
         <Sidebar />
       </aside>
 
@@ -37,7 +36,8 @@ export const Experience = () => {
         <TypingBox onResponseChange={handleResponseChange} />
       </div>
       <Canvas
-      // camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
+        className="relative z-0"
+        // camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
       >
         <PerspectiveCamera makeDefault fov={30} position={[-15.0, -0.5, 15]} />
         <CameraManager />
@@ -50,9 +50,9 @@ export const Experience = () => {
           style={{
             pointerEvents: "auto",
             touchAction: "auto",
+            zIndex: 5,
+            position: "relative",
           }}
-          prepend
-          portal
         >
           <OutputBox response={response} />
         </Html>

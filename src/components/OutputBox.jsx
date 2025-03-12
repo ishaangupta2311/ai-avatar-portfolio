@@ -14,7 +14,7 @@ export const OutputBox = ({ response }) => {
 
   return (
     <div
-      className="z-10 max-w-[600px] w-full bg-slate-800/80 p-6 backdrop-blur-md rounded-xl border border-slate-700 shadow-lg"
+      className="z-[5] max-w-[600px] w-full bg-slate-800/80 p-6 backdrop-blur-md rounded-xl border border-slate-700 shadow-lg"
       style={{
         pointerEvents: "auto",
         touchAction: "auto",
