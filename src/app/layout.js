@@ -8,6 +8,7 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
+  SignUpButton
 } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,6 +29,13 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton className='border-2 border-black'/>
+            </SignedIn>
             {children}
           </ThemeProvider>
         </body>
