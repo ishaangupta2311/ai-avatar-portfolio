@@ -30,12 +30,12 @@ import {
   Turtle,
 } from "lucide-react";
 
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+// import {
+//   SignInButton,
+//   SignedIn,
+//   SignedOut,
+//   UserButton,
+// } from "@clerk/nextjs";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "./ModeToggle";
@@ -77,14 +77,14 @@ export function Sidebar() {
               variant="secondary"
               className="w-full justify-start rounded-lg"
             >
-              <span className="mx-auto">
+              {/* <span className="mx-auto">
                 <SignedOut>
                   <SignInButton />
                 </SignedOut>
                 <SignedIn>
                   <UserButton />
                 </SignedIn>
-              </span>
+              </span> */}
             </Button>
           </div>
         </div>
