@@ -1,6 +1,6 @@
 # Introduction
 
-This is a [Next.js](https://nextjs.org) that enables you to create a 3D AI Avatar of yourself and deploy it on the web.
+This is a [Next.js](https://nextjs.org) project that enables you to create a 3D AI Avatar of yourself and deploy it on the web.
 
 ## Tech Stack Overview
 
