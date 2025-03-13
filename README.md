@@ -12,11 +12,14 @@ This is a [Next.js](https://nextjs.org) project that enables you to create a 3D 
 - [x] React three fiber
 - [x] Clerk Auth
 - [x] Shadcn UI
-- [x] AWS S3 bucket
+- [x] AWS S3
 
 ## Future Additions
 
+- [ ] Animations
+- [ ] Text-to-speech and Speech-to-Speech
 - [ ] Add Payment processing
+      
 
 ## Deploy on Vercel or Netlify
 
