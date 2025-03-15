@@ -35,22 +35,17 @@ model Resume {
 }
 
 model Avatar {
-  id            String    @id @default(cuid())
-  fileName      String    
-  fileUrl       String    
-  fileSize      Int      
-  uploadedAt    DateTime  @default(now())
-  userId        String    @unique  // Makes it one-to-one
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+id String @id @default(cuid())   
+// If a custom avatar isn’t uploaded, this field defaults to "Man.glb".
+fileName String @default("Man.glb")
+// For custom avatars you would likely update fileUrl and fileSize.
+fileUrl String
+fileSize Int
+uploadedAt DateTime @default(now())
+userId String @unique
+user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model DefaultAvatar {
-  id          String    @id @default(cuid())
-  fileUrl     String
-  isActive    Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
 
 enum FileType {
   PDF
