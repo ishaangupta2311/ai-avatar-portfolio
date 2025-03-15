@@ -8,14 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+import { AvatarSettings } from "@/components/settings-page/Avatar-settings";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,
@@ -24,9 +18,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
-  Upload,
-  CreditCard,
-  LogOut,
   User,
   Box,
   CreditCard as BillingIcon,
@@ -36,10 +27,9 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Image } from "next/image";
-import { getSignedURL } from "@/lib/actions";
-import { get } from "http";
-import { sign } from "crypto";
-import crypto from "crypto";
+import { getSignedURL } from "@/lib/utils/actions";
+import { BillingSettings } from "./settings-page/Billing-settings";
+import { AccountSettings } from "./settings-page/Account-settings";
 
 export function SettingsPageComponent() {
   const [activeTab, setActiveTab] = useState("profile");
@@ -48,6 +38,7 @@ export function SettingsPageComponent() {
   const [bio, setBio] = useState("AI enthusiast and 3D clone creator");
   const [plan, setPlan] = useState("pro");
   const [twoFactor, setTwoFactor] = useState(false);
+
   const [emailNotifications, setEmailNotifications] = useState(true);
   const { theme, setTheme } = useTheme();
   const [file, setFile] = useState(undefined);
@@ -154,7 +145,7 @@ export function SettingsPageComponent() {
             <div className="flex items-center space-x-4">
               <Avatar className="h-24 w-24 border bg-background">
                 <AvatarImage
-                  src="/placeholder.svg?height=96&width=96"
+                  // src="/placeholder.svg?height=96&width=96"
                   alt={name}
                 />
                 <AvatarFallback className="bg-muted">
@@ -214,75 +205,17 @@ export function SettingsPageComponent() {
           </div>
         );
       case "avatar":
-        return (
-          <div className="space-y-6">
-            <div className="h-[300px] bg-muted rounded-lg flex items-center justify-center border">
-              <span className="text-muted-foreground">
-                3D Avatar Customization Coming Soon
-              </span>
-            </div>
-          </div>
-        );
+        return <AvatarSettings />;
       case "billing":
-        return (
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <Label>Current Plan</Label>
-              <Select value={plan} onValueChange={setPlan}>
-                <SelectTrigger className="bg-background">
-                  <SelectValue placeholder="Select a plan" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="basic">Basic Plan</SelectItem>
-                  <SelectItem value="pro">Pro Plan</SelectItem>
-                  <SelectItem value="enterprise">Enterprise Plan</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>Payment Method</Label>
-              <div className="flex items-center space-x-4 bg-muted p-4 rounded-lg border">
-                <CreditCard className="h-6 w-6" />
-                <span>•••• •••• •••• 4242</span>
-                <Button variant="ghost" className="ml-auto">
-                  Change
-                </Button>
-              </div>
-            </div>
-            <Button className="w-full">Update Billing Information</Button>
-          </div>
-        );
+        return <BillingSettings plan={plan} setPlan={setPlan} />;
       case "account":
         return (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Two-Factor Authentication</Label>
-                <p className="text-sm text-muted-foreground">
-                  Add an extra layer of security to your account
-                </p>
-              </div>
-              <Switch checked={twoFactor} onCheckedChange={setTwoFactor} />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Email Notifications</Label>
-                <p className="text-sm text-muted-foreground">
-                  Receive updates about your account activity
-                </p>
-              </div>
-              <Switch
-                checked={emailNotifications}
-                onCheckedChange={setEmailNotifications}
-              />
-            </div>
-            <Button variant="secondary" className="w-full">
-              Change Password
-            </Button>
-            <Button variant="destructive" className="w-full">
-              <LogOut className="mr-2 h-4 w-4" /> Sign Out
-            </Button>
-          </div>
+          <AccountSettings
+            emailNotifications={emailNotifications}
+            setEmailNotifications={setEmailNotifications}
+            twoFactor={twoFactor}
+            setTwoFactor={setTwoFactor}
+          />
         );
       default:
         return null;
