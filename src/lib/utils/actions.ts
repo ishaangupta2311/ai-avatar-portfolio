@@ -3,9 +3,15 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import * as crypto from "crypto";
+import prisma from "@/lib/db";
+import { FileType } from "@prisma/client";
 
 const s3 = new S3Client({
   region: process.env.AWS_BUCKET_REGION,
@@ -59,5 +65,3 @@ export async function getSignedURL(
 
   return { success: { url: signedURL } };
 }
-
-
