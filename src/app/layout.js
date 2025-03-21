@@ -8,8 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Chat with Resume",
-  description: "1st tool by Krisper.ai",
+  description: "Automated Marketing Chatbot",
 };
+
 
 export default function RootLayout({ children }) {
   return (
