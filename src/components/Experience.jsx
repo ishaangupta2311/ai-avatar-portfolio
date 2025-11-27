@@ -36,10 +36,11 @@ export const Experience = () => {
         <TypingBox onResponseChange={handleResponseChange} />
       </div>
       <Canvas
+        gl={{ logarithmicDepthBuffer: true }}
         className="relative z-0"
         // camera={{ position: [-15.0, -0.5, 15], fov: 30, near: 0.1, far: 1000 }}
       >
-        <PerspectiveCamera makeDefault fov={30} position={[-15.0, -0.5, 15]} />
+        <PerspectiveCamera makeDefault fov={30} position={[-15.0, -0.5, 15]} near={0.5} far={200} />
         <CameraManager />
         <Html
           position={[0.22, 0.15, -1]}
@@ -59,7 +60,7 @@ export const Experience = () => {
         <Environment preset="sunset" />
         <ambientLight intensity={0.5} color="pink" />
         <Gltf
-          src="/models/sci-fi_lab.glb"
+          src="/models/sci-fi_lab_optimized.glb"
           position={[0.2, -1.7, -2]}
           rotation-y={degToRad(-40)}
         />
