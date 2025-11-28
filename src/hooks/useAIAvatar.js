@@ -64,12 +64,18 @@ export const useAIAvatar = create((set, get) => ({
       set(() => ({ loading: false }));
     }
   },
+  ttsEnabled: false,
+  setTtsEnabled: (ttsEnabled) => {
+    set(() => ({
+      ttsEnabled,
+    }));
+  },
   playMessage: async (message) => {
     set(() => ({
       currentMessage: message,
     }));
 
-    if (!message.audioPlayer) {
+    if (get().ttsEnabled && !message.audioPlayer) {
       set(() => ({
         loading: true,
       }));
@@ -105,8 +111,11 @@ export const useAIAvatar = create((set, get) => ({
         set(() => ({ loading: false }));
       }
     }
-    message.audioPlayer.currentTime = 0;
-    message.audioPlayer.play();
+    
+    if (get().ttsEnabled && message.audioPlayer) {
+        message.audioPlayer.currentTime = 0;
+        message.audioPlayer.play();
+    }
   },
   stopMessage: (message) => {
     if (message?.audioPlayer) {
